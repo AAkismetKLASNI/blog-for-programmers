@@ -1,10 +1,11 @@
 {
 	"users": [
 		{
-			"user_id": "001",
-			"user_login": "erik",
-			"user_password": "qwerty123",
-			"user_role_id": "0"
+			"id": "001",
+			"login": "erik",
+			"password": "qwerty123",
+			"role_id": "0",
+			"resistered_at": "2024-03-17"
 		}
 	],
 	"roles": [
