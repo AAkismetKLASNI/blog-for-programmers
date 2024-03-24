@@ -1,8 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
+import { styled } from 'styled-components';
+
+const MainContainer = styled.main`
+	width: 900px;
+	margin: 150px auto;
+	height: 3000px;
+`;
 
 export const Main = () => {
 	return (
-		<>
+		<MainContainer>
 			<Routes>
 				<Route path="/" element={<div>Главная страница</div>} />
 				<Route path="/login" element={<div>Страница входа</div>} />
@@ -12,6 +19,6 @@ export const Main = () => {
 				<Route path="/post/:post_id" element={<div>Страница cтатьи</div>} />
 				<Route path="*" element={<div>Страницы не существует</div>} />
 			</Routes>
-		</>
+		</MainContainer>
 	);
 };
