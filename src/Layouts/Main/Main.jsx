@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { Authorization } from '../../pages';
 
 const MainContainer = styled.main`
 	width: 900px;
 	margin: 150px auto;
-	height: 3000px;
 `;
 
 export const Main = () => {
@@ -12,7 +12,7 @@ export const Main = () => {
 		<MainContainer>
 			<Routes>
 				<Route path="/" element={<div>Главная страница</div>} />
-				<Route path="/login" element={<div>Страница входа</div>} />
+				<Route path="/login" element={<Authorization />} />
 				<Route path="/register" element={<div>Страница регистрации</div>} />
 				<Route path="/users" element={<div>Страница пользователей</div>} />
 				<Route path="/post" element={<div>Страница новой статьи</div>} />

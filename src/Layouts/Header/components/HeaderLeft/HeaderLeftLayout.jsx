@@ -26,7 +26,7 @@ export const HeaderLeftLayout = () => {
 		<NavLink to="/">
 			<Content>
 				<Logo>
-					<i class="fa fa-code" aria-hidden="true"></i>
+					<i className="fa fa-code" aria-hidden="true"></i>
 				</Logo>
 				<div>
 					<H1>Блог</H1>

@@ -1,3 +1,3 @@
-export * from './Footer/Footer';
-export * from './Header/Header';
-export * from './Main/Main';
+export * from './Input';
+export * from './Button';
+export * from './Error';

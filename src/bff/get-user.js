@@ -3,5 +3,5 @@ import { getUsers } from './index';
 export const getUser = async (loginToFind) => {
 	const users = await getUsers();
 
-	return users.map(({ login }) => login === loginToFind);
+	return users.find((user) => (user.login === loginToFind ? user : false));
 };

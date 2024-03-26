@@ -6,6 +6,13 @@
 			"password": "qwerty123",
 			"role_id": "0",
 			"resistered_at": "2024-03-17"
+		},
+		{
+			"id": "002",
+			"login": "alisa",
+			"password": "sematary",
+			"role_id": "1",
+			"resistered_at": "2024-03-17"
 		}
 	],
 	"roles": [

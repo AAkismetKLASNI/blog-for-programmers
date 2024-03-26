@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Header, Footer, Main } from './components';
+import { Header, Footer, Main } from './Layouts';
 
 const BlogContainer = styled.div`
 	display: flex;
