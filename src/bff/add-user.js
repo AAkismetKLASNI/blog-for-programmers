@@ -5,11 +5,11 @@ export const addUser = (login, password) =>
 		method: 'POST',
 		headers: {
 			'Content-type': 'application/json:charset=utf-8',
-			body: JSON.stringify({
-				login,
-				password,
-				role_id: '2',
-				resistered_at: generateDate(),
-			}),
 		},
-	});
+		body: JSON.stringify({
+			login,
+			password,
+			role_id: '2',
+			resistered_at: generateDate(),
+		}),
+	}).then((loadedUser) => loadedUser.json());

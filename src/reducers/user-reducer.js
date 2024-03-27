@@ -13,9 +13,8 @@ export const userReducer = (state = initialUserState, action) => {
 		case ACTION_TYPE.SET_USER: {
 			return { ...state, ...action.payload };
 		}
-		case ACTION_TYPE.DELETE_USER: {
-			return { ...state };
-		}
+		case ACTION_TYPE.LOGOUT:
+			return initialUserState;
 
 		default:
 			return state;

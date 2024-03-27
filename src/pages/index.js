@@ -1,1 +1,2 @@
-export * from './authoruzation/Authorization';
+export * from './authoruzation/AuthorizationContainer';
+export * from './registration/RegistrationContainer';

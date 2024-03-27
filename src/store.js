@@ -4,10 +4,12 @@ import {
 	usersReducer,
 	postReducer,
 	postsReducer,
+	appReducer,
 } from './reducers';
 import { thunk } from 'redux-thunk';
 
 const reducer = combineReducers({
+	app: appReducer,
 	user: userReducer,
 	users: usersReducer,
 	post: postReducer,

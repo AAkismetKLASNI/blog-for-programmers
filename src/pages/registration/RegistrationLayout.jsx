@@ -1,5 +1,4 @@
 import { Input, Button, Error } from '../../components/index';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AuthorizationForm = styled.form`
@@ -16,11 +15,7 @@ const AuthorizationContent = styled.div`
 	gap: 35px;
 `;
 
-const RegisterLink = styled(NavLink)`
-	text-decoration: underline;
-`;
-
-export const AuthorizationLayout = ({
+export const RegistrationLayout = ({
 	register,
 	handleSubmit,
 	error,
@@ -30,7 +25,7 @@ export const AuthorizationLayout = ({
 }) => {
 	return (
 		<AuthorizationContent>
-			<h2>Авторизация</h2>
+			<h2>Регистрация</h2>
 			<AuthorizationForm onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					type="text"
@@ -42,12 +37,16 @@ export const AuthorizationLayout = ({
 					placeholder="Пароль..."
 					{...register('password')}
 				/>
+				<Input
+					type="password"
+					placeholder="Повторите пароль..."
+					{...register('passcheck')}
+				/>
 				<Button disabled={!!formError} backgroundColor="#AFAFAF">
-					Авторизация
+					Регистрация
 				</Button>
 				{error && <Error>{error}</Error>}
 			</AuthorizationForm>
-			<RegisterLink to="/register">Регистрация</RegisterLink>
 		</AuthorizationContent>
 	);
 };

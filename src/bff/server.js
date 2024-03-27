@@ -33,16 +33,16 @@ export const server = {
 		};
 	},
 	async register(regLogin, regPassword) {
-		const user = await getUser(regLogin);
+		const existUser = await getUser(regLogin);
 
-		if (user) {
+		if (existUser) {
 			return {
 				error: 'Пользователь с таким логином уже существует',
 				res: null,
 			};
 		}
 
-		await addUser(regLogin, regPassword);
+		const user = await addUser(regLogin, regPassword);
 
 		return {
 			error: null,

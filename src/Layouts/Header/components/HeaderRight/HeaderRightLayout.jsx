@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ROLES } from '../../../../constants';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginSelector, roleIdSelector } from '../../../../selectors';
-import { deleteSession } from '../../../../actions';
+import {
+	loginSelector,
+	roleIdSelector,
+	sessionSelector,
+} from '../../../../selectors';
+import { logout } from '../../../../actions';
 
 const Content = styled.div`
 	display: flex;
@@ -35,7 +39,7 @@ const UserPanel = styled.div`
 export const HeaderRightLayout = () => {
 	const roleId = useSelector(roleIdSelector);
 	const login = useSelector(loginSelector);
-	const session = useSelector(({ user }) => user.session);
+	const session = useSelector(sessionSelector);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -48,8 +52,8 @@ export const HeaderRightLayout = () => {
 			) : (
 				<UserPanel>
 					<h4>{login}</h4>
-					<NavLink to="/login" onClick={dispatch(deleteSession(session))}>
-						<i class="fa fa-sign-out" aria-hidden="true"></i>
+					<NavLink to="/login" onClick={() => dispatch(logout(session))}>
+						<i className="fa fa-sign-out" aria-hidden="true"></i>
 					</NavLink>
 				</UserPanel>
 			)}
