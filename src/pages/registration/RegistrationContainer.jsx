@@ -2,12 +2,11 @@ import { RegistrationLayout } from './RegistrationLayout';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../bff';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from '../../actions';
 import { useNavigate } from 'react-router-dom';
-import { useResetFrom } from '../../hooks';
+import { useResetFrom, useServerRequest } from '../../hooks';
 
 const registrationSceme = yup.object().shape({
 	login: yup
@@ -43,6 +42,8 @@ export const RegistrationContainer = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const requestServer = useServerRequest();
+
 	useResetFrom(reset);
 
 	const formError =
@@ -52,7 +53,7 @@ export const RegistrationContainer = () => {
 	const error = serverError || formError;
 
 	const onSubmit = ({ login, password }) => {
-		server.register(login, password).then(({ error, res }) => {
+		requestServer('register', login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(error);
 				return;

@@ -1,4 +1,4 @@
-import { Input, Button, Error } from '../../components/index';
+import { Input, Button, Error, H2 } from '../../ui-components/index';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -30,7 +30,7 @@ export const AuthorizationLayout = ({
 }) => {
 	return (
 		<AuthorizationContent>
-			<h2>Авторизация</h2>
+			<H2>Авторизация</H2>
 			<AuthorizationForm onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					type="text"

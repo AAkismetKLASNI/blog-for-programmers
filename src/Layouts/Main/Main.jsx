@@ -1,6 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { AuthorizationContainer, RegistrationContainer } from '../../pages';
+import {
+	AuthorizationContainer,
+	RegistrationContainer,
+	Users,
+	Post,
+} from '../../pages';
 
 const MainContainer = styled.main`
 	width: 900px;
@@ -14,9 +19,9 @@ export const Main = () => {
 				<Route path="/" element={<div>Главная страница</div>} />
 				<Route path="/login" element={<AuthorizationContainer />} />
 				<Route path="/register" element={<RegistrationContainer />} />
-				<Route path="/users" element={<div>Страница пользователей</div>} />
+				<Route path="/users" element={<Users />} />
 				<Route path="/post" element={<div>Страница новой статьи</div>} />
-				<Route path="/post/:post_id" element={<div>Страница cтатьи</div>} />
+				<Route path="/post/:id" element={<Post />} />
 				<Route path="*" element={<div>Страницы не существует</div>} />
 			</Routes>
 		</MainContainer>

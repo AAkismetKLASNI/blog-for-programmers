@@ -1,19 +1,18 @@
-import { AuthorizationLayout } from './Authorization';
+import { AuthorizationLayout } from './AuthorizationLayout';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../bff';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from '../../actions';
 import { useNavigate } from 'react-router-dom';
-import { useResetFrom } from '../../hooks';
+import { useResetFrom, useServerRequest } from '../../hooks';
 
 const authorizationSceme = yup.object().shape({
 	login: yup
 		.string()
 		.matches(/^\w+$/, 'Недопустимые символы в логине.')
-		.min(3, 'Неверно введен логин. Не меньше 3 символов')
+		.min(3, 'Неверно введен логин. Не меньше 3 символов	')
 		.max(15, 'Неверно введен логин. Не больше 15 символов')
 		.required('Введите логин'),
 	password: yup
@@ -39,13 +38,15 @@ export const AuthorizationContainer = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const requestServer = useServerRequest();
+
 	const formError = errors?.login?.message || errors?.password?.message;
 	const error = serverError || formError;
 
 	useResetFrom(reset);
 
 	const onSubmit = ({ login, password }) => {
-		server.authorize(login, password).then(({ error, res }) => {
+		requestServer('authorize', login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(error);
 				return;

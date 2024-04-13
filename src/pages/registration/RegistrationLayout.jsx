@@ -1,4 +1,4 @@
-import { Input, Button, Error } from '../../components/index';
+import { Input, Button, Error, H2 } from '../../ui-components/index';
 import styled from 'styled-components';
 
 const AuthorizationForm = styled.form`
@@ -25,7 +25,7 @@ export const RegistrationLayout = ({
 }) => {
 	return (
 		<AuthorizationContent>
-			<h2>Регистрация</h2>
+			<H2>Регистрация</H2>
 			<AuthorizationForm onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					type="text"

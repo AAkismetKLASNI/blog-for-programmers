@@ -1,4 +1,4 @@
-import { generateDate } from './index';
+import { generateDate } from '../utils';
 
 export const addUser = (login, password) =>
 	fetch('http://localhost:3600/users', {
@@ -12,4 +12,6 @@ export const addUser = (login, password) =>
 			role_id: '2',
 			resistered_at: generateDate(),
 		}),
-	}).then((loadedUser) => loadedUser.json());
+	})
+		.then((loadedUser) => loadedUser.json())
+		.catch(() => console.log('пользователь не получен'));
