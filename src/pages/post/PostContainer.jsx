@@ -2,36 +2,26 @@ import { useEffect } from 'react';
 import { Comments, PostContent } from './components';
 import { useServerRequest } from '../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPostAsync, loadCommentsAsync } from '../../actions';
+import { loadPostAsync } from '../../actions';
 import { useParams } from 'react-router-dom';
+import { postSelector } from '../../selectors';
 import styled from 'styled-components';
 
 const PostContainer = ({ className }) => {
-	const params = useParams();
-
-	const dispatch = useDispatch();
+	const post = useSelector(postSelector);
 	const requestServer = useServerRequest();
+	const params = useParams();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(loadPostAsync(requestServer, params.id));
-		dispatch(loadCommentsAsync(requestServer, params.id));
-	}, [requestServer, params.id]);
-
-	const post = useSelector((state) => state.post);
-
-	const { id, title, imageUrl, publishedAt, content } = post;
+	}, [requestServer, params.id, dispatch]);
 
 	return (
 		<>
 			<div className={className}>
-				<PostContent
-					id={id}
-					title={title}
-					imageUrl={imageUrl}
-					publishedAt={publishedAt}
-					content={content}
-				/>
-				<Comments id={id} />
+				<PostContent post={post} />
+				<Comments id={post.id} comments={post.comments} />
 			</div>
 		</>
 	);

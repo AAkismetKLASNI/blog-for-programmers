@@ -13,5 +13,5 @@ export const addUser = (login, password) =>
 			resistered_at: generateDate(),
 		}),
 	})
-		.then((loadedUser) => loadedUser.json())
+		.then((creatingUser) => creatingUser.json())
 		.catch(() => console.log('пользователь не получен'));

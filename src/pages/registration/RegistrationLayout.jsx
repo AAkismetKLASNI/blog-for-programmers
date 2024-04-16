@@ -42,7 +42,7 @@ export const RegistrationLayout = ({
 					placeholder="Повторите пароль..."
 					{...register('passcheck')}
 				/>
-				<Button disabled={!!formError} backgroundColor="#AFAFAF">
+				<Button disabled={!!formError} backgroundcolor="#AFAFAF">
 					Регистрация
 				</Button>
 				{error && <Error>{error}</Error>}

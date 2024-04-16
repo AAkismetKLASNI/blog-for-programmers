@@ -1,41 +1,61 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useServerRequest } from '../../../../hooks';
-import { loadCommentsAsync } from '../../../../actions/index';
+import { useState } from 'react';
 import { Icon } from '../../../../ui-components';
+import { useServerRequest } from '../../../../hooks';
 import { Comment } from './components';
+import { useDispatch, useSelector } from 'react-redux';
+import { idSelector, roleIdSelector } from '../../../../selectors';
+import { createCommentPost } from '../../../../actions';
+import { ROLES } from '../../../../constants';
 import styled from 'styled-components';
 
-const CommentsContainer = ({ className, id }) => {
-	const dispatch = useDispatch();
+const CommentsContainer = ({ className, id, comments }) => {
+	const [newComment, setNewComment] = useState('');
+
 	const requestServer = useServerRequest();
+	const dispatch = useDispatch();
+	const authorId = useSelector(idSelector);
+	const roleId = useSelector(roleIdSelector);
 
-	// useEffect(() => {
+	const error =
+		roleId === ROLES.GUEST || !newComment || newComment.length > 200;
 
-	// }, [requestServer, id]);
+	const onCreateNewComment = (content, postId, authorId) => {
+		if (content.length < 1 || content.length > 200) {
+			return;
+		}
 
-	const comments = [
-		{
-			id: '023',
-			content: 'пост имба круче некуда ееееееее',
-			postId: 'a0cf',
-			authorId: '0ecc',
-		},
-	];
+		dispatch(createCommentPost(requestServer, content, postId, authorId));
+		setNewComment('');
+	};
 
 	return (
 		<>
 			<div className={className}>
 				<div className="create-new-comment-block">
 					<textarea
+						value={newComment}
+						onChange={({ target }) => setNewComment(target.value)}
 						className="field-new-comment"
 						placeholder="Комментарий..."
 					></textarea>
-					<Icon className="fa fa-paper-plane-o" aria-hidden="true" />
+					<Icon
+						className="fa fa-paper-plane-o"
+						aria-hidden="true"
+						disabled={error}
+						onClick={() => onCreateNewComment(newComment, id, authorId)}
+					/>
 				</div>
-				<ul>
-					{comments.map(({ id, content }) => {
-						return <Comment key={id} content={content} />;
+				<ul className="comments-container">
+					{comments.map(({ id, content, author, publishedAt }) => {
+						return (
+							<Comment
+								key={id}
+								id={id}
+								content={content}
+								author={author}
+								publishedAt={publishedAt}
+							/>
+						);
 					})}
 				</ul>
 			</div>
@@ -61,5 +81,11 @@ export const Comments = styled(CommentsContainer)`
 		min-height: 160px;
 		padding: 10px;
 		font-size: 18px;
+	}
+
+	& .comments-container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
 `;

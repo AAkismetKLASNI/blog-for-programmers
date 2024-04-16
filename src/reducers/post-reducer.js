@@ -14,9 +14,6 @@ export const postReducer = (state = initialPostState, action) => {
 		case ACTION_TYPE.SET_LOAD_POST: {
 			return { ...state, ...action.payload };
 		}
-		case ACTION_TYPE.SET_COMMENTS_POST: {
-			return { ...state, comments: action.payload };
-		}
 
 		default:
 			return state;

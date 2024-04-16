@@ -10,7 +10,7 @@ const ButtonContainer = ({ className, children, ...props }) => {
 
 export const Button = styled(ButtonContainer)`
 	width: ${({ width = '100%' }) => width};
-	background-color: ${({ backgroundColor = '#efefef' }) => backgroundColor};
+	background-color: ${({ backgroundcolor = '#efefef' }) => backgroundcolor};
 	height: 40px;
 	border: 1px solid black;
 	cursor: pointer;

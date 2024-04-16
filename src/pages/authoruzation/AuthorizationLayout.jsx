@@ -42,7 +42,7 @@ export const AuthorizationLayout = ({
 					placeholder="Пароль..."
 					{...register('password')}
 				/>
-				<Button disabled={!!formError} backgroundColor="#AFAFAF">
+				<Button disabled={!!formError} backgroundcolor="#AFAFAF">
 					Авторизация
 				</Button>
 				{error && <Error>{error}</Error>}

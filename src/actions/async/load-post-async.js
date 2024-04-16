@@ -6,7 +6,5 @@ export const loadPostAsync = (requestServer, postId) => (dispatch) =>
 			return;
 		}
 
-		console.log(res);
-
 		dispatch(setLoadPost(res));
 	});

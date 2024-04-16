@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from '../../actions';
 import { useNavigate } from 'react-router-dom';
-import { useResetFrom, useServerRequest } from '../../hooks';
+import { useResetForm, useServerRequest } from '../../hooks';
 
 const authorizationSceme = yup.object().shape({
 	login: yup
@@ -34,6 +34,8 @@ export const AuthorizationContainer = () => {
 		resolver: yupResolver(authorizationSceme),
 	});
 
+	useResetForm(reset);
+
 	const [serverError, setServerError] = useState(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -43,8 +45,6 @@ export const AuthorizationContainer = () => {
 	const formError = errors?.login?.message || errors?.password?.message;
 	const error = serverError || formError;
 
-	useResetFrom(reset);
-
 	const onSubmit = ({ login, password }) => {
 		requestServer('authorize', login, password).then(({ error, res }) => {
 			if (error) {
@@ -53,6 +53,7 @@ export const AuthorizationContainer = () => {
 			}
 
 			dispatch(setUserAction(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
 
 			navigate('/');
 		});

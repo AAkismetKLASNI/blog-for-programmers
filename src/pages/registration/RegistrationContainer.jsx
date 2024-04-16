@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from '../../actions';
 import { useNavigate } from 'react-router-dom';
-import { useResetFrom, useServerRequest } from '../../hooks';
+import { useResetForm, useServerRequest } from '../../hooks';
 
 const registrationSceme = yup.object().shape({
 	login: yup
@@ -38,13 +38,13 @@ export const RegistrationContainer = () => {
 		resolver: yupResolver(registrationSceme),
 	});
 
+	useResetForm(reset);
+
 	const [serverError, setServerError] = useState(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const requestServer = useServerRequest();
-
-	useResetFrom(reset);
 
 	const formError =
 		errors?.login?.message ||
@@ -60,6 +60,7 @@ export const RegistrationContainer = () => {
 			}
 
 			dispatch(setUserAction(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
 
 			navigate('/');
 		});

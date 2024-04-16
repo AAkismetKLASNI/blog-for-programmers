@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Header, Footer, Main } from './Layouts';
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUserAction } from './actions';
 
 const BlogContainer = styled.div`
 	display: flex;
@@ -12,6 +15,22 @@ const BlogContainer = styled.div`
 `;
 
 export const Blog = () => {
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData');
+
+		if (!currentUserDataJSON) {
+			return;
+		}
+
+		const currentUserData = JSON.parse(currentUserDataJSON);
+
+		dispatch(
+			setUserAction({ ...currentUserData, roleId: currentUserData.roleId }),
+		);
+	}, []);
+
 	return (
 		<BlogContainer>
 			<Header />

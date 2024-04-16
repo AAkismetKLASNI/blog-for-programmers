@@ -2,11 +2,7 @@ import { H2, Icon } from '../../../../ui-components';
 import styled from 'styled-components';
 
 const PostContentContainer = ({
-	id,
-	title,
-	imageUrl,
-	publishedAt,
-	content,
+	post: { id, title, imageUrl, publishedAt, content },
 	className,
 }) => {
 	return (

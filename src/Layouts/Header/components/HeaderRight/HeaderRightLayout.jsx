@@ -43,6 +43,11 @@ export const HeaderRightLayout = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	const onLogout = () => {
+		sessionStorage.removeItem('userData');
+		dispatch(logout(session));
+	};
+
 	return (
 		<Content>
 			{roleId === ROLES.GUEST ? (
@@ -52,7 +57,7 @@ export const HeaderRightLayout = () => {
 			) : (
 				<UserPanel>
 					<h4>{login}</h4>
-					<NavLink to="/login" onClick={() => dispatch(logout(session))}>
+					<NavLink to="/login" onClick={onLogout}>
 						<i className="fa fa-sign-out" aria-hidden="true"></i>
 					</NavLink>
 				</UserPanel>

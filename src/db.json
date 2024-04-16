@@ -27,6 +27,20 @@
       "password": "varuaBestGirlInTheWorld",
       "role_id": "1",
       "resistered_at": "2028-05-22 09:05"
+    },
+    {
+      "id": "5ef9",
+      "login": "newuser1",
+      "password": "qwe123",
+      "role_id": "2",
+      "resistered_at": "2023-07-06 02:14"
+    },
+    {
+      "id": "62d2",
+      "login": "masha",
+      "password": "qwe123",
+      "role_id": "0",
+      "resistered_at": "2024-09-12 19:44"
     }
   ],
   "roles": [
@@ -107,10 +121,46 @@
   ],
   "comments": [
     {
-      "id": "023",
-      "content": "пост имба круче некуда ееееееее",
+      "id": "5ee4",
+      "content": "123",
       "post_id": "a0cf",
-      "author_id": "0ecc"
+      "author_id": "0ecc",
+      "published_at": "2036-03-17 19:43"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "0a7a",
+      "hash": "0.22222918163483029729832196608185768127441406250000",
+      "user": {
+        "id": "0ecc",
+        "login": "erik",
+        "password": "qwe123",
+        "roleId": "0",
+        "registeredAt": "2027-08-08 21:52"
+      }
+    },
+    {
+      "id": "4bd8",
+      "hash": "0.37191694048219292589863016473827883601188659667969",
+      "user": {
+        "id": "0ecc",
+        "login": "erik",
+        "password": "qwe123",
+        "roleId": "0",
+        "registeredAt": "2027-08-08 21:52"
+      }
+    },
+    {
+      "id": "4e44",
+      "hash": "0.61865552949753466194238171738106757402420043945313",
+      "user": {
+        "id": "0ecc",
+        "login": "erik",
+        "password": "qwe123",
+        "roleId": "0",
+        "registeredAt": "2027-08-08 21:52"
+      }
     }
   ]
 }

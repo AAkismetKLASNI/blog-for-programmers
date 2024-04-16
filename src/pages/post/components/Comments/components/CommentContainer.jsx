@@ -1,7 +1,22 @@
 import { Icon } from '../../../../../ui-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeCommentAsync } from '../../../../../actions';
+import { useServerRequest } from '../../../../../hooks';
+import { postIdSelector, roleIdSelector } from '../../../../../selectors';
+import { ROLES } from '../../../../../constants';
 import styled from 'styled-components';
 
-const CommentContainer = ({ className, content }) => {
+const CommentContainer = ({ className, content, id, publishedAt, author }) => {
+	const dispatch = useDispatch();
+	const postId = useSelector(postIdSelector);
+	const roleId = useSelector(roleIdSelector);
+	const requestServer = useServerRequest();
+
+	const onDeleteComment = (commentId) => {
+		requestServer('removeComment', commentId);
+		dispatch(removeCommentAsync(requestServer, commentId, postId));
+	};
+
 	return (
 		<>
 			<div className={className}>
@@ -9,16 +24,23 @@ const CommentContainer = ({ className, content }) => {
 					<div className="comment-info">
 						<div>
 							<Icon className="fa fa-user-circle-o" aria-hidden="true" />
-							<span>login</span>
+							<span>{author}</span>
 						</div>
 						<div>
 							<Icon className="fa fa-calendar-o" aria-hidden="true" />
-							<span>20-20-20</span>
+							<span>{publishedAt}</span>
 						</div>
 					</div>
 					<p>{content}</p>
 				</div>
-				<Icon className="fa fa-trash-o" aria-hidden="true" />
+				<div className="remove-opetation">
+					<Icon
+						className="fa fa-trash-o"
+						aria-hidden="true"
+						onClick={() => onDeleteComment(id)}
+						dataInvisible={ROLES.GUEST === roleId}
+					/>
+				</div>
 			</div>
 		</>
 	);
@@ -46,5 +68,9 @@ export const Comment = styled(CommentContainer)`
 		display: flex;
 		gap: 10px;
 		align-items: center;
+	}
+
+	& .remove-opetation {
+		width: 20px;
 	}
 `;
