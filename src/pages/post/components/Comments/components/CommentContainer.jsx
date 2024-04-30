@@ -1,6 +1,10 @@
 import { Icon } from '../../../../../ui-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeCommentAsync } from '../../../../../actions';
+import {
+	removeCommentAsync,
+	CLOSE_MODAL,
+	openModal,
+} from '../../../../../actions';
 import { useServerRequest } from '../../../../../hooks';
 import { postIdSelector, roleIdSelector } from '../../../../../selectors';
 import { ROLES } from '../../../../../constants';
@@ -13,8 +17,16 @@ const CommentContainer = ({ className, content, id, publishedAt, author }) => {
 	const requestServer = useServerRequest();
 
 	const onDeleteComment = (commentId) => {
-		requestServer('removeComment', commentId);
-		dispatch(removeCommentAsync(requestServer, commentId, postId));
+		dispatch(
+			openModal({
+				questionText: 'Вы действительно хотите удалить комментарий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, commentId, postId));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
 	};
 
 	return (
@@ -38,7 +50,7 @@ const CommentContainer = ({ className, content, id, publishedAt, author }) => {
 						className="fa fa-trash-o"
 						aria-hidden="true"
 						onClick={() => onDeleteComment(id)}
-						dataInvisible={ROLES.GUEST === roleId}
+						datainvisible={ROLES.GUEST === roleId ? true : undefined}
 					/>
 				</div>
 			</div>

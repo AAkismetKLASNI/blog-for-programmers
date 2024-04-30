@@ -9,7 +9,7 @@ const FooterContainer = styled.footer`
 	bottom: 0;
 	width: 1000px;
 	background-color: #fff;
-	z-index: 1;
+	z-index: 10;
 `;
 
 const FooterNav = styled.nav`

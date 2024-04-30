@@ -3,4 +3,5 @@ export * from './Button';
 export * from './Error';
 export * from './H2';
 export * from './Icon';
-export * from './Content.jsx';
+export * from './Content';
+export * from './Modal';

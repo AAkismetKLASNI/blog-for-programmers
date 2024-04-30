@@ -33,6 +33,7 @@ const CommentsContainer = ({ className, id, comments }) => {
 			<div className={className}>
 				<div className="create-new-comment-block">
 					<textarea
+						disabled={ROLES.GUEST === roleId}
 						value={newComment}
 						onChange={({ target }) => setNewComment(target.value)}
 						className="field-new-comment"

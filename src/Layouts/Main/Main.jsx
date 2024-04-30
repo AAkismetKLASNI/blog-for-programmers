@@ -22,6 +22,7 @@ export const Main = () => {
 				<Route path="/users" element={<Users />} />
 				<Route path="/post" element={<div>Страница новой статьи</div>} />
 				<Route path="/post/:id" element={<Post />} />
+				<Route path="/post/:id/edit" element={<Post />} />
 				<Route path="*" element={<div>Страницы не существует</div>} />
 			</Routes>
 		</MainContainer>

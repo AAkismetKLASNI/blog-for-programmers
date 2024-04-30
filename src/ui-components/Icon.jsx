@@ -7,6 +7,6 @@ const IconContainer = ({ className, ...props }) => {
 export const Icon = styled(IconContainer)`
 	font-size: ${({ fontSize = '20px' }) => fontSize};
 	color: ${({ disabled }) => (disabled ? '#ccc' : '#000')};
-	display: ${({ dataInvisible }) => (dataInvisible ? 'none' : 'block')};
+	display: ${({ datainvisible }) => (datainvisible ? 'none' : 'block')};
 	cursor: pointer;
 `;

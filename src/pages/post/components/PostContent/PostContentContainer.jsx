@@ -1,27 +1,37 @@
 import { H2, Icon } from '../../../../ui-components';
+import { useNavigate } from 'react-router-dom';
+import { OperationPost } from '../Operation-post/OperationPostContainer';
 import styled from 'styled-components';
 
 const PostContentContainer = ({
 	post: { id, title, imageUrl, publishedAt, content },
 	className,
 }) => {
+	const navigate = useNavigate();
+
+	const onEdit = () => {
+		navigate(`/post/:${id}/edit`);
+	};
+
+	console.log(imageUrl);
+
 	return (
 		<>
 			<div className={className}>
-				<img src={imageUrl} alt="" id={id} />
+				<img src={imageUrl} alt="img" />
 				<div className="info-about-post">
 					<H2 textAlign="left">{title}</H2>
-					<div className="opetaion-post">
-						<div>
-							<Icon className="fa fa-calendar-o" aria-hidden="true" />
-							<span>{publishedAt}</span>
-						</div>
-						<div>
-							<Icon className="fa fa-pencil-square-o" aria-hidden="true" />
-							<Icon className="fa fa-trash-o" aria-hidden="true" />
-						</div>
-					</div>
-					<p className="content-post">{content}</p>
+					<OperationPost
+						publishedAt={publishedAt}
+						editingButton={
+							<Icon
+								className="fa fa-pencil-square-o"
+								aria-hidden="true"
+								onClick={onEdit}
+							/>
+						}
+					/>
+					<div className="content-post">{content}</div>
 				</div>
 			</div>
 		</>
@@ -34,19 +44,8 @@ export const PostContent = styled(PostContentContainer)`
 		margin: 0 20px 10px 0;
 	}
 
-	& .opetaion-post {
-		display: flex;
-		justify-content: space-between;
-		margin: 20px 0;
-	}
-
-	& .opetaion-post * {
-		display: flex;
-		gap: 10px;
-		align-items: center;
-	}
-
 	& .content-post {
 		text-align: justify;
+		white-space: pre-line;
 	}
 `;

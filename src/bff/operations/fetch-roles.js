@@ -11,6 +11,7 @@ export const fetchRoles = async (userSession) => {
 		return {
 			error: 'Доступ запрещен',
 			res: null,
+			я,
 		};
 	}
 

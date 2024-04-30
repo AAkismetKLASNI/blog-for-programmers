@@ -3,6 +3,7 @@ import { Header, Footer, Main } from './Layouts';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from './actions';
+import { Modal } from './ui-components';
 
 const BlogContainer = styled.div`
 	display: flex;
@@ -35,6 +36,7 @@ export const Blog = () => {
 		<BlogContainer>
 			<Header />
 			<Main />
+			<Modal />
 			<Footer />
 		</BlogContainer>
 	);

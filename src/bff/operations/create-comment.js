@@ -30,6 +30,7 @@ export const createComment = async (userSession, content, postId, authorId) => {
 			author: user.login,
 		};
 	});
+
 	return {
 		error: null,
 		res: {
