@@ -10,7 +10,7 @@ const PostContentContainer = ({
 	const navigate = useNavigate();
 
 	const onEdit = () => {
-		navigate(`/post/:${id}/edit`);
+		navigate(`/post/${id}/edit`);
 	};
 
 	console.log(imageUrl);

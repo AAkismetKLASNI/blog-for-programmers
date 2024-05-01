@@ -3,7 +3,10 @@ import { Input, Icon, H2 } from '../../../../ui-components';
 import { useNavigate } from 'react-router-dom';
 import { OperationPost } from '../Operation-post/OperationPostContainer';
 import { sanitizeContent } from './utils/sanitizeContent';
+import { savePostAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 const PostEditContainer = ({
 	post: { id, title, imageUrl, publishedAt, content },
@@ -13,18 +16,24 @@ const PostEditContainer = ({
 	const imgRef = useRef(null);
 	const titleRef = useRef(null);
 
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+
 	const navigate = useNavigate();
 
 	const onSave = () => {
-		const newImg = imgRef.current.value;
 		const newTitle = titleRef.current.value;
+		const newImg = imgRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
-		console.log(newImg);
-		console.log(newTitle);
-		console.log(newContent);
-
-		// navigate(`/post/:${id}`);
+		dispatch(
+			savePostAsync(requestServer, {
+				id,
+				title: newTitle,
+				imageUrl: newImg,
+				content: newContent,
+			}),
+		).then(() => navigate(`/post/${id}`));
 	};
 
 	return (
