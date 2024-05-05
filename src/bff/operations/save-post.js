@@ -2,10 +2,10 @@ import { ROLES } from '../constants';
 import { updateDataPost } from '../api';
 import { sessions } from '../sessions';
 
-export const savePost = async (session, newData) => {
+export const savePost = async (userSession, newData) => {
 	const accessRoles = [ROLES.ADMIN];
 
-	const access = sessions.access(session, accessRoles);
+	const access = sessions.access(userSession, accessRoles);
 
 	if (!access) {
 		return {

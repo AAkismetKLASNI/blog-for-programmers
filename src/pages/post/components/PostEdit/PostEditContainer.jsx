@@ -45,6 +45,7 @@ const PostEditContainer = ({
 					<H2 margin="10px 0 10px 0">Заголовок</H2>
 					<Input ref={titleRef} defaultValue={title} />
 					<OperationPost
+						id={id}
 						publishedAt={publishedAt}
 						editingButton={<Icon className="fa fa-floppy-o" onClick={onSave} />}
 					/>

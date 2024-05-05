@@ -8,6 +8,7 @@ import {
 	sessionSelector,
 } from '../../../../selectors';
 import { logout } from '../../../../actions';
+import { Icon } from '../../../../ui-components';
 
 const Content = styled.div`
 	display: flex;
@@ -58,25 +59,38 @@ export const HeaderRightLayout = () => {
 				<UserPanel>
 					<h4>{login}</h4>
 					<NavLink to="/login" onClick={onLogout}>
-						<i className="fa fa-sign-out" aria-hidden="true"></i>
+						<Icon
+							fontSize="24px"
+							className="fa fa-sign-out"
+							aria-hidden="true"
+						></Icon>
 					</NavLink>
 				</UserPanel>
 			)}
 
 			<ControlPanel>
-				<i
+				<Icon
+					fontSize="24px"
 					style={{ cursor: 'pointer' }}
 					onClick={() => navigate(-1, { replace: true })}
 					className="fa fa-backward"
 					aria-hidden="true"
-				></i>
+				></Icon>
 				{roleId === ROLES.ADMIN ? (
 					<>
 						<NavLink to="/post">
-							<i className="fa fa-file-text-o" aria-hidden="true"></i>
+							<Icon
+								fontSize="24px"
+								className="fa fa-file-text-o"
+								aria-hidden="true"
+							></Icon>
 						</NavLink>
 						<NavLink to="/users">
-							<i className="fa fa-users" aria-hidden="true"></i>
+							<Icon
+								fontSize="24px"
+								className="fa fa-users"
+								aria-hidden="true"
+							></Icon>
 						</NavLink>
 					</>
 				) : null}

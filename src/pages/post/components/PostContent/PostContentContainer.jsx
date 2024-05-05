@@ -22,6 +22,7 @@ const PostContentContainer = ({
 				<div className="info-about-post">
 					<H2 textAlign="left">{title}</H2>
 					<OperationPost
+						id={id}
 						publishedAt={publishedAt}
 						editingButton={
 							<Icon

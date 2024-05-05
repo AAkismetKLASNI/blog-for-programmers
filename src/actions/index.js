@@ -8,3 +8,5 @@ export * from './async/remove-comment-async';
 export * from './unasync/open-modal';
 export * from './unasync/close-modal';
 export * from './async/save-post-async';
+export * from './async/remove-post-async';
+export * from './unasync/reset-post-data';
