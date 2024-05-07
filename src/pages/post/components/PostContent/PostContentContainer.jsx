@@ -13,8 +13,6 @@ const PostContentContainer = ({
 		navigate(`/post/${id}/edit`);
 	};
 
-	console.log(imageUrl);
-
 	return (
 		<>
 			<div className={className}>

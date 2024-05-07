@@ -1,3 +1,5 @@
+import { transformerPost } from '../transformers';
+
 export const updateDataPost = ({ id, title, content, imageUrl }) =>
 	fetch(`http://localhost:3600/posts/${id}`, {
 		method: 'PATCH',
@@ -7,4 +9,6 @@ export const updateDataPost = ({ id, title, content, imageUrl }) =>
 			title,
 			content,
 		}),
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.then((updatedPost) => updatedPost && transformerPost(updatedPost));

@@ -8,7 +8,8 @@ import { postSelector } from '../../selectors';
 import styled from 'styled-components';
 
 const PostContainer = ({ className }) => {
-	const isEdit = useMatch('/post/:id/edit');
+	const isEditing = useMatch('/post/:id/edit');
+	const isCreating = useMatch('/post');
 
 	const post = useSelector(postSelector);
 	const requestServer = useServerRequest();
@@ -17,15 +18,19 @@ const PostContainer = ({ className }) => {
 
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA);
-	}, [dispatch]);
+	}, [dispatch, isCreating]);
 
 	useEffect(() => {
+		if (isCreating) {
+			return;
+		}
+
 		dispatch(loadPostAsync(requestServer, params.id));
-	}, [requestServer, params.id, dispatch]);
+	}, [requestServer, params.id, dispatch, isCreating]);
 
 	return (
 		<>
-			{isEdit ? (
+			{isEditing || isCreating ? (
 				<PostEdit post={post} />
 			) : (
 				<div className={className}>

@@ -4,7 +4,7 @@ import { useServerRequest } from '../../../../hooks';
 import { Comment } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { idSelector, roleIdSelector } from '../../../../selectors';
-import { createCommentPost } from '../../../../actions';
+import { createCommentPostAsync } from '../../../../actions';
 import { ROLES } from '../../../../constants';
 import styled from 'styled-components';
 
@@ -24,7 +24,7 @@ const CommentsContainer = ({ className, id, comments }) => {
 			return;
 		}
 
-		dispatch(createCommentPost(requestServer, content, postId, authorId));
+		dispatch(createCommentPostAsync(requestServer, content, postId, authorId));
 		setNewComment('');
 	};
 

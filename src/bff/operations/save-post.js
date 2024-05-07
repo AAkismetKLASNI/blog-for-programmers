@@ -1,5 +1,5 @@
 import { ROLES } from '../constants';
-import { updateDataPost } from '../api';
+import { addPost, updateDataPost } from '../api';
 import { sessions } from '../sessions';
 
 export const savePost = async (userSession, newData) => {
@@ -14,10 +14,12 @@ export const savePost = async (userSession, newData) => {
 		};
 	}
 
-	const updatePost = await updateDataPost(newData);
+	const result = newData.id
+		? await updateDataPost(newData)
+		: await addPost(newData);
 
 	return {
 		error: null,
-		res: updatePost,
+		res: result,
 	};
 };

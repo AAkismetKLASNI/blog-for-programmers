@@ -19,7 +19,7 @@ export const FooterRightLayout = () => {
 				setCity(name);
 				setWeather(weather[0].description);
 				setTemp(Math.round(main.temp - 273.15));
-			});
+			}).catch(() => console.log('Погода не получена'));
 	}, []);
 
 	return (

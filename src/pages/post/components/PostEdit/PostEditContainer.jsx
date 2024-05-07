@@ -1,49 +1,55 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Input, Icon, H2 } from '../../../../ui-components';
-import { useNavigate } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 import { OperationPost } from '../Operation-post/OperationPostContainer';
 import { sanitizeContent } from './utils/sanitizeContent';
 import { savePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 const PostEditContainer = ({
 	post: { id, title, imageUrl, publishedAt, content },
 	className,
 }) => {
+	const [imagePost, setImagePost] = useState(imageUrl);
+	const [titlePost, setTitlePost] = useState(title);
 	const contentRef = useRef(null);
-	const imgRef = useRef(null);
-	const titleRef = useRef(null);
+
+	useLayoutEffect(() => {
+		setImagePost(imageUrl);
+		setTitlePost(title);
+	}, [imageUrl, title]);
 
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
-
 	const navigate = useNavigate();
 
 	const onSave = () => {
-		const newTitle = titleRef.current.value;
-		const newImg = imgRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
 			savePostAsync(requestServer, {
 				id,
-				title: newTitle,
-				imageUrl: newImg,
+				title: titlePost,
+				imageUrl: imagePost,
 				content: newContent,
 			}),
-		).then(() => navigate(`/post/${id}`));
+		).then(({ id }) => navigate(`/post/${id}`));
 	};
 
+	const onChangeImage = ({ target }) => setImagePost(target.value);
+	const onChangeTitle = ({ target }) => setTitlePost(target.value);
+
+	console.log(title, imageUrl);
 	return (
 		<>
 			<div className={className}>
 				<H2 margin="10px 0 10px 0">Картинка</H2>
-				<Input ref={imgRef} defaultValue={imageUrl} type="text" />
+				<Input value={imagePost} onChange={onChangeImage} type="text" />
 				<div className="info-about-post">
 					<H2 margin="10px 0 10px 0">Заголовок</H2>
-					<Input ref={titleRef} defaultValue={title} />
+					<Input value={titlePost} onChange={onChangeTitle} />
 					<OperationPost
 						id={id}
 						publishedAt={publishedAt}
@@ -72,5 +78,7 @@ export const PostEdit = styled(PostEditContainer)`
 	& .content-post {
 		text-align: justify;
 		white-space: pre-line;
+		border: 1px solid #000;
+		min-height: 80px;
 	}
 `;

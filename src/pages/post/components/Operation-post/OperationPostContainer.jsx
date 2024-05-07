@@ -34,16 +34,20 @@ const OperationPostContainer = ({
 	return (
 		<div className={className}>
 			<div>
-				<Icon className="fa fa-calendar-o" aria-hidden="true" />
+				{publishedAt && (
+					<Icon className="fa fa-calendar-o" aria-hidden="true" />
+				)}
 				<span>{publishedAt}</span>
 			</div>
 			<div>
 				{editingButton}
-				<Icon
-					className="fa fa-trash-o"
-					aria-hidden="true"
-					onClick={() => onDeletePost(id)}
-				/>
+				{publishedAt && (
+					<Icon
+						className="fa fa-trash-o"
+						aria-hidden="true"
+						onClick={() => onDeletePost(id)}
+					/>
+				)}
 			</div>
 		</div>
 	);

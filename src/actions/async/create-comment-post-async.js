@@ -1,6 +1,6 @@
 import { setLoadPost } from '../index';
 
-export const createCommentPost =
+export const createCommentPostAsync =
 	(requestServer, content, postId, author) => (dispatch) =>
 		requestServer('createComment', content, postId, author).then(
 			({ error, res }) => {

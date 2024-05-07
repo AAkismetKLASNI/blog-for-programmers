@@ -6,7 +6,7 @@ export const savePostAsync = (requestServer, newDataPost) => (dispatch) =>
 			return;
 		}
 
-		console.log(res);
-
 		dispatch(setLoadPost(res));
+
+		return res;
 	});
