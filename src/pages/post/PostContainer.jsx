@@ -42,7 +42,7 @@ const PostContainer = ({ className }) => {
 	);
 };
 
-export const Post = styled(PostContainer)`
+export const PostPage = styled(PostContainer)`
 	display: flex;
 	flex-direction: column;
 	gap: 30px;

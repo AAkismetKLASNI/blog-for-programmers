@@ -23,7 +23,7 @@ const authorizationSceme = yup.object().shape({
 		.required('Введите пароль'),
 });
 
-export const AuthorizationContainer = () => {
+export const AuthorizationContainerPage = () => {
 	const {
 		register,
 		reset,

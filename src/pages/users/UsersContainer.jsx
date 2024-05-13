@@ -65,7 +65,7 @@ const UsersContainer = ({ className }) => {
 	);
 };
 
-export const Users = styled(UsersContainer)`
+export const UsersPage = styled(UsersContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;

@@ -1,5 +1,5 @@
 import { Input, Button, Error, H2 } from '../../ui-components/index';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AuthorizationForm = styled.form`
@@ -16,7 +16,7 @@ const AuthorizationContent = styled.div`
 	gap: 35px;
 `;
 
-const RegisterLink = styled(NavLink)`
+const RegisterLink = styled(Link)`
 	text-decoration: underline;
 `;
 

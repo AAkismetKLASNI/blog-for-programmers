@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Content = styled.div`
 	display: flex;
@@ -23,7 +23,7 @@ const Span = styled.span`
 
 export const HeaderLeftLayout = () => {
 	return (
-		<NavLink to="/">
+		<Link to="/">
 			<Content>
 				<Logo>
 					<i className="fa fa-code" aria-hidden="true"></i>
@@ -33,6 +33,6 @@ export const HeaderLeftLayout = () => {
 					<Span>веб-разработчика</Span>
 				</div>
 			</Content>
-		</NavLink>
+		</Link>
 	);
 };

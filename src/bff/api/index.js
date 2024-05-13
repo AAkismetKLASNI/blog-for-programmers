@@ -14,4 +14,5 @@ export * from './delete-session';
 export * from './add-comment';
 export * from './delete-comment';
 export * from './update-data-post';
+export * from './get-posts';
 export * from './delete-post';

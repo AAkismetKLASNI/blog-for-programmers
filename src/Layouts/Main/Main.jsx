@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { styled } from 'styled-components';
 import {
-	AuthorizationContainer,
-	RegistrationContainer,
-	Users,
-	Post,
+	AuthorizationContainerPage,
+	RegistrationContainerPage,
+	UsersPage,
+	PostPage,
+	MainPage,
 } from '../../pages';
 
 const MainContainer = styled.main`
@@ -16,13 +17,13 @@ export const Main = () => {
 	return (
 		<MainContainer>
 			<Routes>
-				<Route path="/" element={<div>Главная страница</div>} />
-				<Route path="/login" element={<AuthorizationContainer />} />
-				<Route path="/register" element={<RegistrationContainer />} />
-				<Route path="/users" element={<Users />} />
-				<Route path="/post" element={<Post/>} />
-				<Route path="/post/:id" element={<Post />} />
-				<Route path="/post/:id/edit" element={<Post />} />
+				<Route path="/" element={<MainPage />} />
+				<Route path="/login" element={<AuthorizationContainerPage />} />
+				<Route path="/register" element={<RegistrationContainerPage />} />
+				<Route path="/users" element={<UsersPage />} />
+				<Route path="/post" element={<PostPage />} />
+				<Route path="/post/:id" element={<PostPage />} />
+				<Route path="/post/:id/edit" element={<PostPage />} />
 				<Route path="*" element={<div>Страницы не существует</div>} />
 			</Routes>
 		</MainContainer>

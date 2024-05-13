@@ -27,7 +27,7 @@ const registrationSceme = yup.object().shape({
 		.oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
 });
 
-export const RegistrationContainer = () => {
+export const RegistrationContainerPage = () => {
 	const {
 		register,
 		reset,

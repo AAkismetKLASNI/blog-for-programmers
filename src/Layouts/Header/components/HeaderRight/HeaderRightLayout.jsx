@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROLES } from '../../../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -52,19 +52,19 @@ export const HeaderRightLayout = () => {
 	return (
 		<Content>
 			{roleId === ROLES.GUEST ? (
-				<NavLink to="/login">
+				<Link to="/login">
 					<Button>Войти</Button>
-				</NavLink>
+				</Link>
 			) : (
 				<UserPanel>
 					<h4>{login}</h4>
-					<NavLink to="/login" onClick={onLogout}>
+					<Link to="/login" onClick={onLogout}>
 						<Icon
 							fontSize="24px"
 							className="fa fa-sign-out"
 							aria-hidden="true"
 						></Icon>
-					</NavLink>
+					</Link>
 				</UserPanel>
 			)}
 
@@ -78,20 +78,20 @@ export const HeaderRightLayout = () => {
 				></Icon>
 				{roleId === ROLES.ADMIN ? (
 					<>
-						<NavLink to="/post">
+						<Link to="/post">
 							<Icon
 								fontSize="24px"
 								className="fa fa-file-text-o"
 								aria-hidden="true"
 							></Icon>
-						</NavLink>
-						<NavLink to="/users">
+						</Link>
+						<Link to="/users">
 							<Icon
 								fontSize="24px"
 								className="fa fa-users"
 								aria-hidden="true"
 							></Icon>
-						</NavLink>
+						</Link>
 					</>
 				) : null}
 			</ControlPanel>
