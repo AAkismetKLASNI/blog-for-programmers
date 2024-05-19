@@ -19,11 +19,19 @@ const PostContainer = ({
 				<h4 className="title-post">{title}</h4>
 				<div className="info-about-post">
 					<div>
-						<Icon className="fa fa-calendar-o" aria-hidden="true" />
+						<Icon
+							className="fa fa-calendar-o"
+							aria-hidden="true"
+							unactive={true}
+						/>
 						{publishedAt}
 					</div>
 					<div>
-						<Icon className="fa fa-calendar-o" aria-hidden="true" />
+						<Icon
+							className="fa fa-commenting"
+							aria-hidden="true"
+							unactive={true}
+						/>
 						{countComments}
 					</div>
 				</div>

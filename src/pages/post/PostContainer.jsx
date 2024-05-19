@@ -1,13 +1,17 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Comments, PostContent, PostEdit } from './components';
 import { useServerRequest } from '../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPostAsync, RESET_POST_DATA } from '../../actions';
 import { useMatch, useParams } from 'react-router-dom';
 import { postSelector } from '../../selectors';
+import { Error } from '../../ui-components';
 import styled from 'styled-components';
 
 const PostContainer = ({ className }) => {
+	const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
+
 	const isEditing = useMatch('/post/:id/edit');
 	const isCreating = useMatch('/post');
 
@@ -22,21 +26,35 @@ const PostContainer = ({ className }) => {
 
 	useEffect(() => {
 		if (isCreating) {
+			setIsLoading(false);
 			return;
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id));
+		dispatch(loadPostAsync(requestServer, params.id)).then((error) => {
+			setError(error);
+			setIsLoading(false);
+		});
 	}, [requestServer, params.id, dispatch, isCreating]);
+
+	if (isLoading) {
+		return null;
+	}
 
 	return (
 		<>
-			{isEditing || isCreating ? (
-				<PostEdit post={post} />
+			{error ? (
+				<Error>{error}</Error>
 			) : (
-				<div className={className}>
-					<PostContent post={post} />
-					<Comments id={post.id} comments={post.comments} />
-				</div>
+				<>
+					{isEditing || isCreating ? (
+						<PostEdit post={post} />
+					) : (
+						<div className={className}>
+							<PostContent post={post} />
+							<Comments id={post.id} comments={post.comments} />
+						</div>
+					)}
+				</>
 			)}
 		</>
 	);

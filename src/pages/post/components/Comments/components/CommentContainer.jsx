@@ -39,7 +39,11 @@ const CommentContainer = ({ className, content, id, publishedAt, author }) => {
 							<span>{author}</span>
 						</div>
 						<div>
-							<Icon className="fa fa-calendar-o" aria-hidden="true" />
+							<Icon
+								className="fa fa-calendar-o"
+								aria-hidden="true"
+								unactive={true}
+							/>
 							<span>{publishedAt}</span>
 						</div>
 					</div>

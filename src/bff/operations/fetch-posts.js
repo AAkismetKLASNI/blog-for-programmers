@@ -1,9 +1,16 @@
 import { getComments, getPosts } from '../api';
 
-export const fetchPosts = async () => {
-	const [posts, comments] = await Promise.all([getPosts(), getComments()]);
+export const fetchPosts = async (page, limit, searchBarPhrase) => {
+	const [{ posts, last }, comments] = await Promise.all([
+		getPosts(page, limit),
+		getComments(),
+	]);
 
-	const postWithCountComments = posts.map((post) => {
+	const filtredPosts = posts.filter(({ title }) =>
+		title.toLowerCase().includes(searchBarPhrase),
+	);
+
+	const postWithCountComments = filtredPosts.map((post) => {
 		return {
 			...post,
 			countComments: comments.filter(({ postId }) => postId === post.id).length,
@@ -12,6 +19,6 @@ export const fetchPosts = async () => {
 
 	return {
 		error: null,
-		res: postWithCountComments,
+		res: { posts: postWithCountComments, last },
 	};
 };

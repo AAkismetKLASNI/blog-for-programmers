@@ -35,7 +35,11 @@ const OperationPostContainer = ({
 		<div className={className}>
 			<div>
 				{publishedAt && (
-					<Icon className="fa fa-calendar-o" aria-hidden="true" />
+					<Icon
+						className="fa fa-calendar-o"
+						aria-hidden="true"
+						unactive={true}
+					/>
 				)}
 				<span>{publishedAt}</span>
 			</div>
