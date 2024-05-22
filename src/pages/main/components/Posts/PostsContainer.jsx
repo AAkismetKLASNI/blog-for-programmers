@@ -13,6 +13,7 @@ const PostsContainer = ({
 	switchReadyPhrase,
 }) => {
 	const [posts, setPosts] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const requestServer = useServerRequest();
 
 	useEffect(() => {
@@ -28,29 +29,36 @@ const PostsContainer = ({
 
 			setLastPage(res.last);
 			setPosts(res.posts);
+			setLoading(true);
 		});
 	}, [requestServer, page, switchReadyPhrase]);
 
 	return (
 		<div className={className}>
-			{posts.length ? (
-				<ul className="test">
-					{posts.map(({ title, imageUrl, id, publishedAt, countComments }) => (
-						<Post
-							key={id}
-							title={title}
-							imageUrl={imageUrl}
-							publishedAt={publishedAt}
-							id={id}
-							countComments={countComments}
-						/>
-					))}
-				</ul>
-			) : (
-				<div>
-					<p className="not-found-posts">Таких постов не существует</p>
-				</div>
-			)}
+			{loading ? (
+				<>
+					{posts.length ? (
+						<ul className="test">
+							{posts.map(
+								({ title, imageUrl, id, publishedAt, countComments }) => (
+									<Post
+										key={id}
+										title={title}
+										imageUrl={imageUrl}
+										publishedAt={publishedAt}
+										id={id}
+										countComments={countComments}
+									/>
+								),
+							)}
+						</ul>
+					) : (
+						<div>
+							<p className="not-found-posts">Таких постов не существует</p>
+						</div>
+					)}
+				</>
+			) : null}
 		</div>
 	);
 };

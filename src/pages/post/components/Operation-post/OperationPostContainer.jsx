@@ -1,10 +1,12 @@
 import { Icon } from '../../../../ui-components';
 import { useServerRequest } from '../../../../hooks';
 import { CLOSE_MODAL, removePostAsync, openModal } from '../../../../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { roleIdSelector } from '../../../../selectors';
+import { ROLES } from '../../../../constants';
 
 const OperationPostContainer = ({
 	className,
@@ -12,9 +14,9 @@ const OperationPostContainer = ({
 	publishedAt,
 	editingButton,
 }) => {
+	const roleId = useSelector(roleIdSelector);
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
-
 	const navigate = useNavigate();
 
 	const onDeletePost = (id) => {
@@ -45,14 +47,18 @@ const OperationPostContainer = ({
 				<span>{publishedAt}</span>
 			</div>
 			<div>
-				{editingButton}
-				{publishedAt && (
-					<Icon
-						className="fa fa-trash-o"
-						aria-hidden="true"
-						onClick={() => onDeletePost(id)}
-					/>
-				)}
+				{roleId === ROLES.ADMIN ? (
+					<>
+						{editingButton}
+						{publishedAt && (
+							<Icon
+								className="fa fa-trash-o"
+								aria-hidden="true"
+								onClick={() => onDeletePost(id)}
+							/>
+						)}
+					</>
+				) : null}
 			</div>
 		</div>
 	);
