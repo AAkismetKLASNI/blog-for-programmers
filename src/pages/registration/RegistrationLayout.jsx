@@ -1,4 +1,5 @@
 import { Input, Button, Error, H2 } from '../../ui-components/index';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const AuthorizationForm = styled.form`
@@ -49,4 +50,16 @@ export const RegistrationLayout = ({
 			</AuthorizationForm>
 		</AuthorizationContent>
 	);
+};
+
+RegistrationLayout.propTypes = {
+	register: PropTypes.func.isRequired,
+	handleSubmit: PropTypes.func.isRequired,
+	error: PropTypes.oneOfType([PropTypes.exact(undefined), PropTypes.string]),
+	formError: PropTypes.oneOfType([
+		PropTypes.exact(undefined),
+		PropTypes.string,
+	]),
+	onSubmit: PropTypes.func.isRequired,
+	setServerError: PropTypes.func.isRequired,
 };

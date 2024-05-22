@@ -11,8 +11,6 @@ export const sessions = {
 	async remove(hash) {
 		const session = await getSession(hash);
 
-		console.log('remove', session);
-
 		if (!session) {
 			return;
 		}
@@ -26,6 +24,6 @@ export const sessions = {
 			return;
 		}
 
-		return !!session.user && accessRoles.includes(session.user.roleId);
+		return !!session?.user && accessRoles.includes(session.user.roleId);
 	},
 };

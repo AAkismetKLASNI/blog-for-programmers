@@ -3,23 +3,24 @@ import { H2, Content } from '../../ui-components';
 import { User } from './components/UserLayout';
 import { useServerRequest } from '../../hooks';
 import { ROLES } from '../../bff/constants';
+import { checkAccess } from '../../utils/check-access';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { roleIdSelector } from '../../selectors';
 
 const UsersContainer = ({ className }) => {
 	const [roles, setRoles] = useState([]);
 	const [users, setUsers] = useState([]);
 	const [errorFetch, setErrorFetch] = useState(null);
 	const [switchDeleteUser, setSwitchDeleteUser] = useState(false);
-
+	const userRole = useSelector(roleIdSelector);
 	const requestServer = useServerRequest();
 
-	const onDeleteUser = (userId) => {
-		requestServer('requestDeleteUser', userId).then(() =>
-			setSwitchDeleteUser(!switchDeleteUser),
-		);
-	};
-
 	useEffect(() => {
+		if (!checkAccess([ROLES.ADMIN], userRole)) {
+			return;
+		}
+
 		Promise.all([
 			requestServer('fetchRoles'),
 			requestServer('fetchUsers'),
@@ -32,11 +33,21 @@ const UsersContainer = ({ className }) => {
 			setRoles(rolesRes.res);
 			setUsers(usersRes.res);
 		});
-	}, [requestServer, switchDeleteUser]);
+	}, [requestServer, switchDeleteUser, userRole]);
+
+	const onDeleteUser = (userId) => {
+		if (!checkAccess([ROLES.ADMIN], userRole)) {
+			return;
+		}
+
+		requestServer('requestDeleteUser', userId).then(() =>
+			setSwitchDeleteUser(!switchDeleteUser),
+		);
+	};
 
 	return (
 		<div className={className}>
-			<Content error={errorFetch}>
+			<Content serverError={errorFetch} access={[ROLES.ADMIN]}>
 				<H2>Пользователи</H2>
 				<div className="table-container">
 					<div className="table-titles">

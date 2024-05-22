@@ -1,11 +1,12 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Input, Icon, H2 } from '../../../../ui-components';
-import { useMatch, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { OperationPost } from '../Operation-post/OperationPostContainer';
 import { sanitizeContent } from './utils/sanitizeContent';
 import { savePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PostEditContainer = ({
@@ -41,31 +42,28 @@ const PostEditContainer = ({
 	const onChangeImage = ({ target }) => setImagePost(target.value);
 	const onChangeTitle = ({ target }) => setTitlePost(target.value);
 
-	console.log(title, imageUrl);
 	return (
-		<>
-			<div className={className}>
-				<H2 margin="10px 0 10px 0">Картинка</H2>
-				<Input value={imagePost} onChange={onChangeImage} type="text" />
-				<div className="info-about-post">
-					<H2 margin="10px 0 10px 0">Заголовок</H2>
-					<Input value={titlePost} onChange={onChangeTitle} />
-					<OperationPost
-						id={id}
-						publishedAt={publishedAt}
-						editingButton={<Icon className="fa fa-floppy-o" onClick={onSave} />}
-					/>
-					<div
-						ref={contentRef}
-						contentEditable={true}
-						suppressContentEditableWarning={true}
-						className="content-post"
-					>
-						{content}
-					</div>
+		<div className={className}>
+			<H2 margin="10px 0 10px 0">Картинка</H2>
+			<Input value={imagePost} onChange={onChangeImage} type="text" />
+			<div className="info-about-post">
+				<H2 margin="10px 0 10px 0">Заголовок</H2>
+				<Input value={titlePost} onChange={onChangeTitle} />
+				<OperationPost
+					id={id}
+					publishedAt={publishedAt}
+					editingButton={<Icon className="fa fa-floppy-o" onClick={onSave} />}
+				/>
+				<div
+					ref={contentRef}
+					contentEditable={true}
+					suppressContentEditableWarning={true}
+					className="content-post"
+				>
+					{content}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
@@ -82,3 +80,14 @@ export const PostEdit = styled(PostEditContainer)`
 		min-height: 80px;
 	}
 `;
+
+PostEdit.propTypes = {
+	id: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	title: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	imageUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	publishedAt: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.exact(undefined),
+	]),
+	content: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+};

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { idSelector, roleIdSelector } from '../../../../selectors';
 import { createCommentPostAsync } from '../../../../actions';
 import { ROLES } from '../../../../constants';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CommentsContainer = ({ className, id, comments }) => {
@@ -90,3 +91,8 @@ export const Comments = styled(CommentsContainer)`
 		gap: 10px;
 	}
 `;
+
+Comments.propTypes = {
+	id: PropTypes.string.isRequired,
+	comments: PropTypes.array.isRequired,
+};

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ErrorContent = ({ children, className }) => {
@@ -5,7 +6,9 @@ const ErrorContent = ({ children, className }) => {
 };
 
 export const Error = styled(ErrorContent)`
-	background-color: #f88a89;
-	border: 1px solid black;
-	padding: 10px;
+	text-align: center;
 `;
+
+Error.propTypes = {
+	children: PropTypes.node.isRequired,
+};

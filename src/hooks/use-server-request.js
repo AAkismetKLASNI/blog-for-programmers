@@ -13,6 +13,7 @@ export const useServerRequest = () => {
 				'authorize',
 				'fetchPost',
 				'fetchComments',
+				'fetchPosts',
 			].includes(operation)
 				? params
 				: [session, ...params];

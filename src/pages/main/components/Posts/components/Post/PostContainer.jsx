@@ -1,5 +1,6 @@
 import { Icon } from '../../../../../../ui-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PostContainer = ({
@@ -19,11 +20,19 @@ const PostContainer = ({
 				<h4 className="title-post">{title}</h4>
 				<div className="info-about-post">
 					<div>
-						<Icon className="fa fa-calendar-o" aria-hidden="true" />
+						<Icon
+							className="fa fa-calendar-o"
+							aria-hidden="true"
+							unactive={true}
+						/>
 						{publishedAt}
 					</div>
 					<div>
-						<Icon className="fa fa-calendar-o" aria-hidden="true" />
+						<Icon
+							className="fa fa-commenting"
+							aria-hidden="true"
+							unactive={true}
+						/>
 						{countComments}
 					</div>
 				</div>
@@ -65,3 +74,11 @@ export const Post = styled(PostContainer)`
 		align-items: center;
 	}
 `;
+
+Post.propTypes = {
+	title: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
+	countComments: PropTypes.number.isRequired,
+};
