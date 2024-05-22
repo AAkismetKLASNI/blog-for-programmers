@@ -1,6 +1,7 @@
 import { debounce } from '../../utils';
 import { useMemo } from 'react';
 import { Icon, Input } from '../../../../ui-components';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SearchContainer = ({
@@ -47,3 +48,10 @@ export const Search = styled(SearchContainer)`
 	padding: 0 10px 0 0;
 	border: 1px solid #000;
 `;
+
+Search.propTypes = {
+	searchBarPhrase: PropTypes.string.isRequired,
+	switchReadyPhrase: PropTypes.bool.isRequired,
+	setSearchBarPhrase: PropTypes.func.isRequired,
+	setSwitchReadyPhrase: PropTypes.func.isRequired,
+};

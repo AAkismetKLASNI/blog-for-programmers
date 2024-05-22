@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadPostAsync, RESET_POST_DATA } from '../../actions';
 import { useMatch, useParams } from 'react-router-dom';
 import { postSelector } from '../../selectors';
-import { Error } from '../../ui-components';
+import { Content, Error } from '../../ui-components';
 import styled from 'styled-components';
+import { ROLES } from '../../constants';
 
 const PostContainer = ({ className }) => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
-
 	const isEditing = useMatch('/post/:id/edit');
 	const isCreating = useMatch('/post');
-
 	const post = useSelector(postSelector);
 	const requestServer = useServerRequest();
 	const params = useParams();
@@ -47,7 +46,9 @@ const PostContainer = ({ className }) => {
 			) : (
 				<>
 					{isEditing || isCreating ? (
-						<PostEdit post={post} />
+						<Content access={[ROLES.ADMIN]} serverError={error}>
+							<PostEdit post={post} />
+						</Content>
 					) : (
 						<div className={className}>
 							<PostContent post={post} />

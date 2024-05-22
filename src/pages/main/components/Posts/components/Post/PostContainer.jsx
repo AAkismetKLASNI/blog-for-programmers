@@ -1,5 +1,6 @@
 import { Icon } from '../../../../../../ui-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PostContainer = ({
@@ -73,3 +74,11 @@ export const Post = styled(PostContainer)`
 		align-items: center;
 	}
 `;
+
+Post.propTypes = {
+	title: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
+	countComments: PropTypes.number.isRequired,
+};

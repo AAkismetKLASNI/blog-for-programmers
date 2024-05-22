@@ -1,6 +1,7 @@
 import { H2, Icon } from '../../../../ui-components';
 import { useNavigate } from 'react-router-dom';
 import { OperationPost } from '../Operation-post/OperationPostContainer';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PostContentContainer = ({
@@ -48,3 +49,14 @@ export const PostContent = styled(PostContentContainer)`
 		white-space: pre-line;
 	}
 `;
+
+PostContent.propTypes = {
+	id: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	title: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	imageUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+	publishedAt: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.exact(undefined),
+	]),
+	content: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(undefined)]),
+};

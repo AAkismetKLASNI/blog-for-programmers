@@ -7,6 +7,7 @@ import {
 	PostPage,
 	MainPage,
 } from '../../pages';
+import { ERRORS } from '../../constants';
 
 const MainContainer = styled.main`
 	width: 900px;
@@ -24,7 +25,7 @@ export const Main = () => {
 				<Route path="/post" element={<PostPage />} />
 				<Route path="/post/:id" element={<PostPage />} />
 				<Route path="/post/:id/edit" element={<PostPage />} />
-				<Route path="*" element={<div>Страницы не существует</div>} />
+				<Route path="*" element={<div>{ERRORS.PAGE_NOT_DEFINED}</div>} />
 			</Routes>
 		</MainContainer>
 	);

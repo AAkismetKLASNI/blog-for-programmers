@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useServerRequest } from '../../../../hooks';
 import { Post } from './components';
 import { PAGINATION_LIMIT } from '../../../../constants';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PostsContainer = ({
@@ -66,3 +67,10 @@ export const Posts = styled(PostsContainer)`
 		text-align: center;
 	}
 `;
+
+Posts.propTypes = {
+	page: PropTypes.number.isRequired,
+	setLastPage: PropTypes.func.isRequired,
+	searchBarPhrase: PropTypes.string.isRequired,
+	switchReadyPhrase: PropTypes.bool.isRequired,
+};

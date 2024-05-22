@@ -1,4 +1,5 @@
 import { Button } from '../../../../ui-components';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PaginationContainer = ({ className, setPage, page, lastPage }) => {
@@ -27,3 +28,9 @@ export const Pagination = styled(PaginationContainer)`
 	align-items: center;
 	gap: 30px;
 `;
+
+Pagination.propTypes = {
+	setPage: PropTypes.func.isRequired,
+	lastPage: PropTypes.number.isRequired,
+	page: PropTypes.number.isRequired,
+};

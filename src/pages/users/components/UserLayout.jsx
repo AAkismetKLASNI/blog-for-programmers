@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '../../../ui-components';
 import { useServerRequest } from '../../../hooks';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const UserContainer = ({
@@ -61,3 +62,12 @@ const UserContainer = ({
 };
 
 export const User = styled(UserContainer)``;
+
+User.propTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registeredAt: PropTypes.string.isRequired,
+	roles: PropTypes.array.isRequired,
+	roleId: PropTypes.string.isRequired,
+	onDeleteUser: PropTypes.func.isRequired,
+};

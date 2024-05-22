@@ -8,6 +8,7 @@ import {
 import { useServerRequest } from '../../../../../hooks';
 import { postIdSelector, roleIdSelector } from '../../../../../selectors';
 import { ROLES } from '../../../../../constants';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CommentContainer = ({ className, content, id, publishedAt, author }) => {
@@ -90,3 +91,10 @@ export const Comment = styled(CommentContainer)`
 		width: 20px;
 	}
 `;
+
+CommentContainer.propTypes = {
+	content: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+};

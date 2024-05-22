@@ -2,12 +2,13 @@ import { Icon } from '../../../../ui-components';
 import { useServerRequest } from '../../../../hooks';
 import { CLOSE_MODAL, removePostAsync, openModal } from '../../../../actions';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const OperationPostContainer = ({
-	id,
 	className,
+	id,
 	publishedAt,
 	editingButton,
 }) => {
@@ -68,3 +69,9 @@ export const OperationPost = styled(OperationPostContainer)`
 		align-items: center;
 	}
 `;
+
+OperationPost.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editingButton: PropTypes.object.isRequired,
+};

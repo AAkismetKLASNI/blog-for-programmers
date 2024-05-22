@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const IconContainer = ({ className, unactive, ...props }) => {
@@ -11,3 +12,7 @@ export const Icon = styled(IconContainer)`
 	cursor: ${({ unactive, disabled }) =>
 		unactive || disabled ? 'default' : 'pointer'};
 `;
+
+Icon.propTypes = {
+	unactive: PropTypes.bool,
+};
